@@ -11,14 +11,7 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsInt,
-  IsEnum,
-  ValidateNested,
-} from "class-validator";
-import { EnumCertificationLanguage } from "./EnumCertificationLanguage";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { Type } from "class-transformer";
 @InputType()
@@ -55,17 +48,6 @@ class CertificationCreateInput {
     nullable: true,
   })
   duration?: number | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumCertificationLanguage,
-  })
-  @IsEnum(EnumCertificationLanguage)
-  @IsOptional()
-  @Field(() => EnumCertificationLanguage, {
-    nullable: true,
-  })
-  language?: "fr" | "en" | "ar" | "Italian" | null;
 
   @ApiProperty({
     required: false,

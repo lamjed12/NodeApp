@@ -37,7 +37,6 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <TextField label="Domain" source="domain" />
             <TextField label="Duration" source="duration" />
             <TextField label="ID" source="id" />
-            <TextField label="Language" source="language" />
             <TextField label="Technology" source="technology" />
             <DateField source="updatedAt" label="Updated At" />
             <ReferenceField label="User" source="user.id" reference="User">
@@ -73,7 +72,6 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <TextField label="Domain" source="domain" />
             <TextField label="Duration" source="duration" />
             <TextField label="ID" source="id" />
-            <TextField label="Language" source="language" />
             <TextField label="Name" source="name" />
             <TextField label="Technology" source="technology" />
             <DateField source="updatedAt" label="Updated At" />

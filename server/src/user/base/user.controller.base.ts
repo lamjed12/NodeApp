@@ -231,7 +231,6 @@ export class UserControllerBase {
         domain: true,
         duration: true,
         id: true,
-        language: true,
         technology: true,
         updatedAt: true,
 
@@ -441,7 +440,6 @@ export class UserControllerBase {
         domain: true,
         duration: true,
         id: true,
-        language: true,
         name: true,
         technology: true,
         updatedAt: true,

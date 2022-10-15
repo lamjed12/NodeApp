@@ -6,7 +6,6 @@ export type WhiteTestOrderByInput = {
   domain?: SortOrder;
   duration?: SortOrder;
   id?: SortOrder;
-  language?: SortOrder;
   name?: SortOrder;
   technology?: SortOrder;
   updatedAt?: SortOrder;

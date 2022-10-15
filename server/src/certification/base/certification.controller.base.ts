@@ -63,7 +63,6 @@ export class CertificationControllerBase {
         domain: true,
         duration: true,
         id: true,
-        language: true,
         technology: true,
         updatedAt: true,
 
@@ -96,7 +95,6 @@ export class CertificationControllerBase {
         domain: true,
         duration: true,
         id: true,
-        language: true,
         technology: true,
         updatedAt: true,
 
@@ -130,7 +128,6 @@ export class CertificationControllerBase {
         domain: true,
         duration: true,
         id: true,
-        language: true,
         technology: true,
         updatedAt: true,
 
@@ -181,7 +178,6 @@ export class CertificationControllerBase {
           domain: true,
           duration: true,
           id: true,
-          language: true,
           technology: true,
           updatedAt: true,
 
@@ -223,7 +219,6 @@ export class CertificationControllerBase {
           domain: true,
           duration: true,
           id: true,
-          language: true,
           technology: true,
           updatedAt: true,
 

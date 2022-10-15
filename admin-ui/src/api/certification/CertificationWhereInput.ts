@@ -8,7 +8,6 @@ export type CertificationWhereInput = {
   domain?: StringNullableFilter;
   duration?: IntNullableFilter;
   id?: StringFilter;
-  language?: "fr" | "en" | "ar" | "Italian";
   technology?: StringNullableFilter;
   user?: UserWhereUniqueInput;
 };

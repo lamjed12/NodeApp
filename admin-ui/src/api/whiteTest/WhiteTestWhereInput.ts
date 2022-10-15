@@ -8,7 +8,6 @@ export type WhiteTestWhereInput = {
   domain?: StringNullableFilter;
   duration?: IntNullableFilter;
   id?: StringFilter;
-  language?: "fr" | "English" | "ar";
   name?: StringFilter;
   technology?: StringNullableFilter;
   user?: UserWhereUniqueInput;
