@@ -25,7 +25,6 @@ export const WhiteTestList = (props: ListProps): React.ReactElement => {
         <TextField label="Domain" source="domain" />
         <TextField label="Duration" source="duration" />
         <TextField label="ID" source="id" />
-        <TextField label="Language" source="language" />
         <TextField label="Name" source="name" />
         <TextField label="Technology" source="technology" />
         <DateField source="updatedAt" label="Updated At" />

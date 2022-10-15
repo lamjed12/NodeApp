@@ -16,11 +16,9 @@ import {
   IsDate,
   IsOptional,
   IsInt,
-  IsEnum,
   ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { EnumWhiteTestLanguage } from "./EnumWhiteTestLanguage";
 import { User } from "../../user/base/User";
 @ObjectType()
 class WhiteTest {
@@ -69,17 +67,6 @@ class WhiteTest {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumWhiteTestLanguage,
-  })
-  @IsEnum(EnumWhiteTestLanguage)
-  @IsOptional()
-  @Field(() => EnumWhiteTestLanguage, {
-    nullable: true,
-  })
-  language?: "fr" | "English" | "ar" | null;
 
   @ApiProperty({
     required: true,

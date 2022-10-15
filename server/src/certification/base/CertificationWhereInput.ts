@@ -13,10 +13,9 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, IsEnum, ValidateNested } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { EnumCertificationLanguage } from "./EnumCertificationLanguage";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class CertificationWhereInput {
@@ -63,17 +62,6 @@ class CertificationWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumCertificationLanguage,
-  })
-  @IsEnum(EnumCertificationLanguage)
-  @IsOptional()
-  @Field(() => EnumCertificationLanguage, {
-    nullable: true,
-  })
-  language?: "fr" | "en" | "ar" | "Italian";
 
   @ApiProperty({
     required: false,

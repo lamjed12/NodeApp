@@ -6,7 +6,6 @@ export type CertificationOrderByInput = {
   domain?: SortOrder;
   duration?: SortOrder;
   id?: SortOrder;
-  language?: SortOrder;
   technology?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;

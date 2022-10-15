@@ -16,11 +16,9 @@ import {
   IsOptional,
   IsDate,
   IsInt,
-  IsEnum,
   ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { EnumCertificationLanguage } from "./EnumCertificationLanguage";
 import { User } from "../../user/base/User";
 @ObjectType()
 class Certification {
@@ -72,17 +70,6 @@ class Certification {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumCertificationLanguage,
-  })
-  @IsEnum(EnumCertificationLanguage)
-  @IsOptional()
-  @Field(() => EnumCertificationLanguage, {
-    nullable: true,
-  })
-  language?: "fr" | "en" | "ar" | "Italian" | null;
 
   @ApiProperty({
     required: false,

@@ -70,15 +70,6 @@ class CertificationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  language?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   technology?: SortOrder;
 
   @ApiProperty({
