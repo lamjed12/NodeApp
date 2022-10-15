@@ -32,8 +32,7 @@ model WhiteTest {
   name       String
   technology String?
   updatedAt  DateTime @updatedAt
-  user       User?    @relation(fields: [userId], references: [id])
-  userId     String?
+  user       User[]
 }
 
 model Certification {
@@ -44,8 +43,7 @@ model Certification {
   id         String   @id @default(cuid())
   technology String?
   updatedAt  DateTime @updatedAt
-  user       User?    @relation(fields: [userId], references: [id])
-  userId     String?
+  user       User[]
 }
 
 model Formation {
@@ -55,6 +53,5 @@ model Formation {
   maxCount  String?
   startDate DateTime?
   updatedAt DateTime  @updatedAt
-  user      User?     @relation(fields: [userId], references: [id])
-  userId    String?
+  user      User[]
 }

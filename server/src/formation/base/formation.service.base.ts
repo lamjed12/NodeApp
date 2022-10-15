@@ -47,11 +47,14 @@ export class FormationServiceBase {
     return this.prisma.formation.delete(args);
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async findUser(
+    parentId: string,
+    args: Prisma.UserFindManyArgs
+  ): Promise<User[]> {
     return this.prisma.formation
       .findUnique({
         where: { id: parentId },
       })
-      .user();
+      .user(args);
   }
 }

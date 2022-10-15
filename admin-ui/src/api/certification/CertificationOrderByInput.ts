@@ -8,5 +8,4 @@ export type CertificationOrderByInput = {
   id?: SortOrder;
   technology?: SortOrder;
   updatedAt?: SortOrder;
-  userId?: SortOrder;
 };

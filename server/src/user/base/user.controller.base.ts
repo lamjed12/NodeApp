@@ -233,12 +233,6 @@ export class UserControllerBase {
         id: true,
         technology: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -337,12 +331,6 @@ export class UserControllerBase {
         maxCount: true,
         startDate: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -443,12 +431,6 @@ export class UserControllerBase {
         name: true,
         technology: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {

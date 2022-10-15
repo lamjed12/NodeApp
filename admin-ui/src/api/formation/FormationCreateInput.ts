@@ -1,8 +1,8 @@
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { UserCreateNestedManyWithoutFormationsInput } from "./UserCreateNestedManyWithoutFormationsInput";
 
 export type FormationCreateInput = {
   endDate?: Date | null;
   maxCount?: string | null;
   startDate?: Date | null;
-  user?: UserWhereUniqueInput | null;
+  user?: UserCreateNestedManyWithoutFormationsInput;
 };

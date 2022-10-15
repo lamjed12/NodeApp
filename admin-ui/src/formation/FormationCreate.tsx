@@ -6,8 +6,8 @@ import {
   CreateProps,
   DateTimeInput,
   TextInput,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -19,9 +19,14 @@ export const FormationCreate = (props: CreateProps): React.ReactElement => {
         <DateTimeInput label="End Date" source="endDate" />
         <TextInput label="Max Count" source="maxCount" />
         <DateTimeInput label="Start Date" source="startDate" />
-        <ReferenceInput source="user.id" reference="User" label="User">
-          <SelectInput optionText={UserTitle} />
-        </ReferenceInput>
+        <ReferenceArrayInput
+          source="user"
+          reference="User"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={UserTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

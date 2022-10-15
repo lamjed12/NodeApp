@@ -25,6 +25,7 @@ import { DeleteWhiteTestArgs } from "./DeleteWhiteTestArgs";
 import { WhiteTestFindManyArgs } from "./WhiteTestFindManyArgs";
 import { WhiteTestFindUniqueArgs } from "./WhiteTestFindUniqueArgs";
 import { WhiteTest } from "./WhiteTest";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
 import { User } from "../../user/base/User";
 import { WhiteTestService } from "../whiteTest.service";
 
@@ -97,15 +98,7 @@ export class WhiteTestResolverBase {
   ): Promise<WhiteTest> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -122,15 +115,7 @@ export class WhiteTestResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -164,18 +149,22 @@ export class WhiteTestResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
+  @graphql.ResolveField(() => [User])
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async user(@graphql.Parent() parent: WhiteTest): Promise<User | null> {
-    const result = await this.service.getUser(parent.id);
+  async user(
+    @graphql.Parent() parent: WhiteTest,
+    @graphql.Args() args: UserFindManyArgs
+  ): Promise<User[]> {
+    const results = await this.service.findUser(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }

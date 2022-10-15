@@ -1,4 +1,4 @@
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { UserCreateNestedManyWithoutWhiteTestsInput } from "./UserCreateNestedManyWithoutWhiteTestsInput";
 
 export type WhiteTestCreateInput = {
   code: string;
@@ -6,5 +6,5 @@ export type WhiteTestCreateInput = {
   duration?: number | null;
   name: string;
   technology?: string | null;
-  user?: UserWhereUniqueInput | null;
+  user?: UserCreateNestedManyWithoutWhiteTestsInput;
 };

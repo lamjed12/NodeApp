@@ -16,7 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { UserListRelationFilter } from "../../user/base/UserListRelationFilter";
 @InputType()
 class CertificationWhereInput {
   @ApiProperty({
@@ -76,14 +76,14 @@ class CertificationWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
+    type: () => UserListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => UserListRelationFilter)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => UserListRelationFilter, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput;
+  user?: UserListRelationFilter;
 }
 export { CertificationWhereInput };

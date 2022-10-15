@@ -25,6 +25,7 @@ import { DeleteCertificationArgs } from "./DeleteCertificationArgs";
 import { CertificationFindManyArgs } from "./CertificationFindManyArgs";
 import { CertificationFindUniqueArgs } from "./CertificationFindUniqueArgs";
 import { Certification } from "./Certification";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
 import { User } from "../../user/base/User";
 import { CertificationService } from "../certification.service";
 
@@ -97,15 +98,7 @@ export class CertificationResolverBase {
   ): Promise<Certification> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -122,15 +115,7 @@ export class CertificationResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -164,18 +149,22 @@ export class CertificationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
+  @graphql.ResolveField(() => [User])
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async user(@graphql.Parent() parent: Certification): Promise<User | null> {
-    const result = await this.service.getUser(parent.id);
+  async user(
+    @graphql.Parent() parent: Certification,
+    @graphql.Args() args: UserFindManyArgs
+  ): Promise<User[]> {
+    const results = await this.service.findUser(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }

@@ -1,4 +1,4 @@
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { UserUpdateManyWithoutWhiteTestsInput } from "./UserUpdateManyWithoutWhiteTestsInput";
 
 export type WhiteTestUpdateInput = {
   code?: string;
@@ -6,5 +6,5 @@ export type WhiteTestUpdateInput = {
   duration?: number | null;
   name?: string;
   technology?: string | null;
-  user?: UserWhereUniqueInput | null;
+  user?: UserUpdateManyWithoutWhiteTestsInput;
 };

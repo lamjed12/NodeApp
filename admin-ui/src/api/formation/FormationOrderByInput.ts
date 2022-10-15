@@ -7,5 +7,4 @@ export type FormationOrderByInput = {
   maxCount?: SortOrder;
   startDate?: SortOrder;
   updatedAt?: SortOrder;
-  userId?: SortOrder;
 };

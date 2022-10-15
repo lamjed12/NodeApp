@@ -16,7 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { UserListRelationFilter } from "../../user/base/UserListRelationFilter";
 @InputType()
 class FormationWhereInput {
   @ApiProperty({
@@ -65,14 +65,14 @@ class FormationWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
+    type: () => UserListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => UserListRelationFilter)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => UserListRelationFilter, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput;
+  user?: UserListRelationFilter;
 }
 export { FormationWhereInput };

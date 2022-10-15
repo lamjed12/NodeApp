@@ -47,11 +47,14 @@ export class WhiteTestServiceBase {
     return this.prisma.whiteTest.delete(args);
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async findUser(
+    parentId: string,
+    args: Prisma.UserFindManyArgs
+  ): Promise<User[]> {
     return this.prisma.whiteTest
       .findUnique({
         where: { id: parentId },
       })
-      .user();
+      .user(args);
   }
 }
