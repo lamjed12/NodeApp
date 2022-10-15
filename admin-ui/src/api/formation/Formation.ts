@@ -7,5 +7,5 @@ export type Formation = {
   maxCount: string | null;
   startDate: Date | null;
   updatedAt: Date;
-  user?: User | null;
+  user?: Array<User>;
 };

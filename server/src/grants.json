@@ -74,6 +74,42 @@
   {
     "role": "user",
     "resource": "WhiteTest",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "WhiteTest",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "formateur",
+    "resource": "WhiteTest",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "WhiteTest",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "WhiteTest",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "WhiteTest",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "WhiteTest",
     "action": "read:any",
     "attributes": "*"
   },
@@ -108,6 +144,24 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "Certification",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Certification",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Certification",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
     "resource": "Certification",
     "action": "read:any",
@@ -141,6 +195,42 @@
     "role": "formateur",
     "resource": "Formation",
     "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Formation",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Formation",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Formation",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Formation",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Formation",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "formateur",
+    "resource": "Formation",
+    "action": "read:any",
     "attributes": "*"
   }
 ]

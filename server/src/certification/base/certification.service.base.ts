@@ -47,11 +47,14 @@ export class CertificationServiceBase {
     return this.prisma.certification.delete(args);
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async findUser(
+    parentId: string,
+    args: Prisma.UserFindManyArgs
+  ): Promise<User[]> {
     return this.prisma.certification
       .findUnique({
         where: { id: parentId },
       })
-      .user();
+      .user(args);
   }
 }

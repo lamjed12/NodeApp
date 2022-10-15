@@ -13,7 +13,7 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { UserUpdateManyWithoutFormationsInput } from "./UserUpdateManyWithoutFormationsInput";
 @InputType()
 class FormationUpdateInput {
   @ApiProperty({
@@ -51,14 +51,14 @@ class FormationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
+    type: () => UserUpdateManyWithoutFormationsInput,
   })
   @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => UserUpdateManyWithoutFormationsInput)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => UserUpdateManyWithoutFormationsInput, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput | null;
+  user?: UserUpdateManyWithoutFormationsInput;
 }
 export { FormationUpdateInput };

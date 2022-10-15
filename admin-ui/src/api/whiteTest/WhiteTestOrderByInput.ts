@@ -9,5 +9,4 @@ export type WhiteTestOrderByInput = {
   name?: SortOrder;
   technology?: SortOrder;
   updatedAt?: SortOrder;
-  userId?: SortOrder;
 };

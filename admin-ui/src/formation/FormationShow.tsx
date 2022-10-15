@@ -5,9 +5,7 @@ import {
   ShowProps,
   DateField,
   TextField,
-  ReferenceField,
 } from "react-admin";
-import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const FormationShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -19,9 +17,6 @@ export const FormationShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Max Count" source="maxCount" />
         <TextField label="Start Date" source="startDate" />
         <DateField source="updatedAt" label="Updated At" />
-        <ReferenceField label="User" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
       </SimpleShowLayout>
     </Show>
   );

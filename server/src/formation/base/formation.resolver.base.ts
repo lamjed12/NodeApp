@@ -25,6 +25,7 @@ import { DeleteFormationArgs } from "./DeleteFormationArgs";
 import { FormationFindManyArgs } from "./FormationFindManyArgs";
 import { FormationFindUniqueArgs } from "./FormationFindUniqueArgs";
 import { Formation } from "./Formation";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
 import { User } from "../../user/base/User";
 import { FormationService } from "../formation.service";
 
@@ -97,15 +98,7 @@ export class FormationResolverBase {
   ): Promise<Formation> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -122,15 +115,7 @@ export class FormationResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -164,18 +149,22 @@ export class FormationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
+  @graphql.ResolveField(() => [User])
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async user(@graphql.Parent() parent: Formation): Promise<User | null> {
-    const result = await this.service.getUser(parent.id);
+  async user(
+    @graphql.Parent() parent: Formation,
+    @graphql.Args() args: UserFindManyArgs
+  ): Promise<User[]> {
+    const results = await this.service.findUser(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }

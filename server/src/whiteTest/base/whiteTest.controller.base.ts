@@ -27,6 +27,9 @@ import { WhiteTestWhereUniqueInput } from "./WhiteTestWhereUniqueInput";
 import { WhiteTestFindManyArgs } from "./WhiteTestFindManyArgs";
 import { WhiteTestUpdateInput } from "./WhiteTestUpdateInput";
 import { WhiteTest } from "./WhiteTest";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
+import { User } from "../../user/base/User";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class WhiteTestControllerBase {
@@ -46,15 +49,7 @@ export class WhiteTestControllerBase {
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(@common.Body() data: WhiteTestCreateInput): Promise<WhiteTest> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        user: data.user
-          ? {
-              connect: data.user,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         code: true,
         createdAt: true,
@@ -64,12 +59,6 @@ export class WhiteTestControllerBase {
         name: true,
         technology: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -97,12 +86,6 @@ export class WhiteTestControllerBase {
         name: true,
         technology: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -131,12 +114,6 @@ export class WhiteTestControllerBase {
         name: true,
         technology: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -164,15 +141,7 @@ export class WhiteTestControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          user: data.user
-            ? {
-                connect: data.user,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           code: true,
           createdAt: true,
@@ -182,12 +151,6 @@ export class WhiteTestControllerBase {
           name: true,
           technology: true,
           updatedAt: true,
-
-          user: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -224,12 +187,6 @@ export class WhiteTestControllerBase {
           name: true,
           technology: true,
           updatedAt: true,
-
-          user: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -240,5 +197,106 @@ export class WhiteTestControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  @common.Get("/:id/user")
+  @ApiNestedQuery(UserFindManyArgs)
+  async findManyUser(
+    @common.Req() request: Request,
+    @common.Param() params: WhiteTestWhereUniqueInput
+  ): Promise<User[]> {
+    const query = plainToClass(UserFindManyArgs, request.query);
+    const results = await this.service.findUser(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        email: true,
+        firstName: true,
+        id: true,
+        lastName: true,
+        phoneNumber: true,
+        roles: true,
+        updatedAt: true,
+        username: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "WhiteTest",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/user")
+  async connectUser(
+    @common.Param() params: WhiteTestWhereUniqueInput,
+    @common.Body() body: UserWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      user: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "WhiteTest",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/user")
+  async updateUser(
+    @common.Param() params: WhiteTestWhereUniqueInput,
+    @common.Body() body: UserWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      user: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "WhiteTest",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/user")
+  async disconnectUser(
+    @common.Param() params: WhiteTestWhereUniqueInput,
+    @common.Body() body: UserWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      user: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

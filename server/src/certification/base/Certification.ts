@@ -92,11 +92,11 @@ class Certification {
 
   @ApiProperty({
     required: false,
-    type: () => User,
+    type: () => [User],
   })
   @ValidateNested()
   @Type(() => User)
   @IsOptional()
-  user?: User | null;
+  user?: Array<User>;
 }
 export { Certification };

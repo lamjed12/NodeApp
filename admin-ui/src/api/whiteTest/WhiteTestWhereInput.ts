@@ -1,7 +1,7 @@
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { UserListRelationFilter } from "../user/UserListRelationFilter";
 
 export type WhiteTestWhereInput = {
   code?: StringFilter;
@@ -10,5 +10,5 @@ export type WhiteTestWhereInput = {
   id?: StringFilter;
   name?: StringFilter;
   technology?: StringNullableFilter;
-  user?: UserWhereUniqueInput;
+  user?: UserListRelationFilter;
 };

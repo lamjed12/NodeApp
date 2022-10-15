@@ -8,5 +8,5 @@ export type Certification = {
   id: string;
   technology: string | null;
   updatedAt: Date;
-  user?: User | null;
+  user?: Array<User>;
 };

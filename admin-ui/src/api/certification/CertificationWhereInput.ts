@@ -1,7 +1,7 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { UserListRelationFilter } from "../user/UserListRelationFilter";
 
 export type CertificationWhereInput = {
   code?: StringNullableFilter;
@@ -9,5 +9,5 @@ export type CertificationWhereInput = {
   duration?: IntNullableFilter;
   id?: StringFilter;
   technology?: StringNullableFilter;
-  user?: UserWhereUniqueInput;
+  user?: UserListRelationFilter;
 };
